@@ -1,6 +1,6 @@
 import SceneComponent from "./SceneComponent";
 import { RES } from "../common/resource";
-import { MODULE } from "../common/Common";
+import { MODULE, HOTUPDATE, SCENE_NAME } from "../common/Common";
 
 const { ccclass, property } = cc._decorator;
 
@@ -30,8 +30,8 @@ export default class BaseLoading extends SceneComponent {
             self._fLoadRes();  
 
         } else {//检查更新
-
-            self._fCheckUpdate();
+            if (HOTUPDATE) 
+                self._fCheckUpdate();
 
         }
     }
@@ -43,12 +43,21 @@ export default class BaseLoading extends SceneComponent {
         });
     }
 
+    _loadResCfgJson () : void {
+        RES.loadJson("resources", (res)=>{
+            RES.loadArrayToGlobal(res.Common, ()=>{}, ()=>{
+                this._runScene(SCENE_NAME.LOGIN_SCENE);
+            });
+        });
+    }
+
     _tap_Update () : void {
         
     }
 
     //h5 直接加载资源
     protected _fLoadRes () : void {
+        this._loadResCfgJson();
     }
     //检查更新
     protected _fCheckUpdate () : void {

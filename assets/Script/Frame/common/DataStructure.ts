@@ -2,7 +2,6 @@
  * 全局的一些数据结构
  */
 
-
  //商品的数据结构
  interface inter_Product {
     sName ?: string//商品名称

@@ -6,6 +6,15 @@ import { Base64 } from "./Base64";
 //是否启用多语言
  export let I18N = false;
 
+ //是否热更新
+ export let HOTUPDATE = false;
+
+
+ //路由
+ export enum ROUTE {
+    GATE = "gate.gateHandler.queryEntry",
+    LOGIN = "connector.entryHandler.login",
+ }
 
  //模块定义
  export enum MODULE {
@@ -23,10 +32,12 @@ import { Base64 } from "./Base64";
     ADIARY = "Tip_ADiary",
     NEWS = "Tip_News",
     UPDATE = "Tip_Update",
+    SYSTIP = "Tip_Msg",
  }
  //场景的名称
  export enum SCENE_NAME {
      LOADING = "Loading",
+     LOGIN_SCENE = "Scene_Login",
      MENU_SCENE = "MenuScene",
      START_SCENE = "StartGame",
      OVER_SCENE = "GameOver"
@@ -38,6 +49,12 @@ import { Base64 } from "./Base64";
      BUY,
      TIMEOUT,
      DIE
+ }
+
+ //网络连接code
+ export enum NET_CODE {
+     CODE_NONE = 200,
+     CODE_ERROR = 500
  }
 
  //交易类型

@@ -1,6 +1,7 @@
 import BaseComponent from "./BaseComponent";
 import { RES, RES_TYPE } from "../common/resource";
 import LayerComponent from "./LayerComponent";
+import { MODULE } from "../common/Common";
 
 const { ccclass,  property } = cc._decorator;
 
@@ -11,6 +12,9 @@ export default class SceneComponent extends BaseComponent {
         super.onLoad();
         let self = this;
         self._emitter.on("runScene", self._runScene, self);
+        self._emitter.on("Sys", (name, data)=>{
+            self.showLayer(MODULE.MSG, data);
+        }, this);
     }
     /**
      * 跳转场景
@@ -19,12 +23,13 @@ export default class SceneComponent extends BaseComponent {
      */
     protected _runScene (sceneName : string, callBack ?: Function) : void {
         let self = this;
+        self._destroy();
         cc.director.preloadScene(sceneName, (err) => {
             if (err) {
                 cc.warn("场景预加载失败->[", sceneName, "]");
                 debugger;
             } else {
-                self.onExit();
+                // self.onExit();
                 cc.director.loadScene(sceneName, callBack);
             }
         });
@@ -33,7 +38,7 @@ export default class SceneComponent extends BaseComponent {
     /**
      * 销毁自己
      */
-    onDestroy () : void {
+    _destroy () : void {
         console.log(`销毁场景${cc.director.getScene().name}`);
         //当前场景释放资源
         RES.fReleaseRes(RES_TYPE.MODULE);

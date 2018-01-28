@@ -51,14 +51,20 @@ export enum RES_TYPE {
     /**
      * 加载资源组
      * @param file 名称-字符串数组
-     * @param progress 进度-没加载成功一个会调用一次
+     * @param progress 进度-每加载成功一个会调用一次
      * @param cb 加载完成的回调函数
      */
     static loadArray (file : Array<string>, progress : Function, cb ?: Function) : void {
         let tatol = file.length;
+        let index = 0;
         for (let i in file) {
-            RES.loadResToGlobal(file[i], (res)=>{
-
+            RES.loadRes(file[i], (res)=>{
+                index ++;
+                if (index == tatol) {
+                    cb();
+                } else {
+                    progress(index, tatol, res);
+                }
             });
         }
         // cc.loader.loadResArray(file, (Count: number, total: number, item: any) => {
@@ -76,7 +82,7 @@ export enum RES_TYPE {
     static loadJson (file : string, cb ?: Function) : void {
         cc.loader.loadRes(file, (err, res) => {
             if (err) {
-                cc.warn(file, "json资源读取出错");
+                cc.warn("json资源读取出错", err);
                 return;
             }
             if (cb) cb(res);

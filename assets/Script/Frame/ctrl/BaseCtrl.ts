@@ -1,4 +1,5 @@
 import { ClientData } from "../module/ClientData";
+import pomelo from "../pomelo/pomelo";
 
 
 /**
@@ -9,6 +10,10 @@ import { ClientData } from "../module/ClientData";
      protected _clientData : ClientData;
      constructor () {
         this._clientData = ClientData.getInstance();
+     }
+
+     _initPomelo (msg : any, cb : Function) {
+        pomelo.getInstance().initPomelo(msg.host, msg.port, msg.account, msg.password, cb);
      }
 
     //  /**
