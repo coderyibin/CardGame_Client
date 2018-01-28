@@ -14,6 +14,7 @@ import { Base64 } from "./Base64";
  export enum ROUTE {
     GATE = "gate.gateHandler.queryEntry",
     LOGIN = "connector.entryHandler.login",
+    UPDATENAME = "connector.entryHandler.setName",
  }
 
  //模块定义
@@ -155,6 +156,25 @@ import { Base64 } from "./Base64";
     static StringHasLetter (str : string) : boolean {
         let regString = /[a-zA-Z]+/; //验证大小写26个字母任意字母最少出现1次。
         return regString.test(str);//true:包含
+    }
+
+    /**
+     * 判断字符串是否为空
+     */
+    static StringIsSpace (str : string) : boolean {
+        if (str.replace(/(^s*)|(s*$)/g, "").length ==0) { 
+            return true; 
+        } return false;
+    }
+
+    /**
+     * 判断字符串是否包含某些字符
+     */
+    static StringHasStr (str : string) : boolean {
+        if (str.indexOf("*" || "_" || "-" || "/" || "\"") >= 0) {
+            return true;
+        }
+        return false;
     }
 
     /**

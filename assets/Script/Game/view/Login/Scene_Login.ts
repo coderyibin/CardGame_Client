@@ -6,6 +6,7 @@ import SceneComponent from "../../../Frame/view/SceneComponent";
 import { Emitter } from "../../../Frame/ctrl/Emitter";
 import { RES } from "../../../Frame/common/resource";
 import UserMgr from "../../ctrl/UserMgr";
+import { Common } from "../../../Frame/common/Common";
 
 const { ccclass, property } = cc._decorator;
 
@@ -14,14 +15,28 @@ export default class Scene_Login extends SceneComponent {
     //私有变量
     private _sAccount : string;
     private _sPassword : string;
+    private _uId : number;
     //私有变量声明结束
     //这边去声明ui组件
+    @property({
+        tooltip : "登陆面板",
+        type : cc.Node
+    })
+    Panel_Login : cc.Node = null;
 
+    @property({
+        tooltip : "输入名称面板",
+        type : cc.Node
+    })
+    Panel_SetName : cc.Node = null;
 	//声明ui组件end
 
 	onLoad () : void {
 		//调用父类onLoad
-		super.onLoad();
+        super.onLoad();
+        this.Panel_Login.active = true;
+        this.Panel_SetName.active = false;
+        this._LabelData["error"].string = "";
     }
     
     _editBox_began_edit_Account (event) : void {
@@ -46,6 +61,25 @@ export default class Scene_Login extends SceneComponent {
             "port" : RES.Res["global"]['config.json'].clientport,
             "account" : this._EditBoxData["edit_Account"].string,
             "password" : this._EditBoxData["edit_Password"].string
+        }, (data)=>{
+            this._uId = data.uid;
+            this.Panel_Login.active = false;
+            this.Panel_SetName.active = true;
+        });
+    }
+
+    _tap_StartGame () : void {
+        let name = this._EditBoxData["name"].string;
+        if (Common.StringIsSpace(name)) {
+            this._LabelData['error'].string = "请不要输入特殊字符！";
+            return;
+        }
+        var data = {
+            uid : this._uId,
+            name : name
+        }
+        UserMgr.getInstance().reqStartGame(data, (res)=>{
+
         });
     }
 }

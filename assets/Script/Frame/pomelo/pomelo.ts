@@ -28,10 +28,7 @@ export default class Pomelo {
     }
 
     request (route : string, msg : any, cb : Function) : void {
-        pomelo.request(route, {
-            uid : msg.uid,
-            password : msg.password
-        }, (data)=>{
+        pomelo.request(route, msg, (data)=>{
             console.log(data);
             if (cb && data.code == NET_CODE.CODE_NONE) {
                 cb(data);
