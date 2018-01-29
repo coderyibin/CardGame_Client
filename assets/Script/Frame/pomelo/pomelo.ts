@@ -2,6 +2,12 @@ import { Common, ROUTE, NET_CODE } from "../common/Common";
 import { Emitter } from "../ctrl/Emitter";
 
 export default class Pomelo {
+
+    private _initOn () : void {
+        this.on("sys", (msg)=>{
+            console.log("服务端主动推送", msg);
+        });
+    }
     
     initPomelo (host, port, account, password, cb : Function) : void {
         let self = this;
@@ -24,7 +30,8 @@ export default class Pomelo {
                     });
                 });
             })
-        })
+        });
+        this._initOn();
     }
 
     request (route : string, msg : any, cb : Function) : void {
@@ -36,6 +43,10 @@ export default class Pomelo {
                 Emitter.getInstance().emit("Sys", data);
             }
         });
+    }
+
+    on (emit : string, cb : Function) : void {
+        EventEmitter.prototype.on(emit, cb);
     }
 
     private static _ctor : Pomelo;

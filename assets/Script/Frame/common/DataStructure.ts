@@ -26,20 +26,27 @@
     Common ?: Array<string>//公共
     StartGame ?: Array<string>//开始游戏
  }
+
 //游戏玩家数据结构
  interface inter_Player {
-    nBout ?: number;//本局得分
-    nMaxScore ?: number;//最高分数
-    sCurTime ?: string;//当局时间
-    sShortTime ?: string;//最短时间
-    PlayerMoney ?: number//玩家初始金币
-    PlayerHealth ?: number//玩家初始健康
-    PlayerCurHealth ?: number//玩家当前健康
-    PlayerReputation ?: number//玩家初始名声
-    PlayerDeposit ?: number//存款
-    nCurPackageCount ?: number//当前背包空间
-    nAllPackageCount ?: number//总背包空间
+    nUid ?: number           //玩家uid
+    sNickName ?: string         //玩家名称
+    nLevel ?: number            //玩家等级
+    nFightValue ?: number       //玩家战斗值
 }
+
+//玩家战斗阵容单体数据--类似于卡牌数据
+interface inter_Fight {
+    nId ?: number           //id
+    sName ?: string         //名称
+    nLevel ?: number        //等级
+    nProduct ?: number      //等阶
+    nAtt ?: number          //攻击力
+    nAttBonus ?: number     //攻击加成
+    nDef ?: number          //防御力
+    nDefThrough ?: number   //防御穿透
+}
+
 //游戏的配置
  interface inter_Config {
      mode ?: number;//游戏模式

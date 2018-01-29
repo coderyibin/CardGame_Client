@@ -1247,7 +1247,9 @@
     handshakeCallback = params.handshakeCallback;
     connect(params, url, cb);
   };
-
+  var on = function (event, fn){
+    (this._callbacks[event] = this._callbacks[event] || []).push(fn);
+  }
   var defaultDecode = pomelo.decode = function(data) {
     //probuff decode
     var msg = Message.decode(data);
