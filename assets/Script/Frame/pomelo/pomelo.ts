@@ -1,17 +1,19 @@
 import { Common, ROUTE, NET_CODE } from "../common/Common";
-import { Emitter } from "../ctrl/Emitter";
+// import { Emitter } from "../ctrl/Emitter";
+// import pomelo = require("pomelo");
 
 export default class Pomelo {
 
-    private _initOn () : void {
-        this.on("sys", (msg)=>{
+    private pomelo : any;
+    private _initEmitter () : void {
+        this.on("onSys", (msg)=>{
             console.log("服务端主动推送", msg);
         });
     }
     
     initPomelo (host, port, account, password, cb : Function) : void {
         let self = this;
-        pomelo.init({
+        this.pomelo.init({
             host : host,
             port : port,
             log : true
@@ -31,28 +33,30 @@ export default class Pomelo {
                 });
             })
         });
-        this._initOn();
+        this._initEmitter();
     }
 
     request (route : string, msg : any, cb : Function) : void {
-        pomelo.request(route, msg, (data)=>{
+        this.pomelo.request(route, msg, (data)=>{
             console.log(data);
             if (cb && data.code == NET_CODE.CODE_NONE) {
                 cb(data);
             } else if (data.code == NET_CODE.CODE_ERROR) {
-                Emitter.getInstance().emit("Sys", data);
+                // Emitter.getInstance().emit("Sys", data);
             }
         });
     }
 
     on (emit : string, cb : Function) : void {
-        EventEmitter.prototype.on(emit, cb);
+        this.pomelo.on(emit, cb);
+        console.log(this.pomelo);
     }
 
     private static _ctor : Pomelo;
     public static getInstance () : Pomelo {
         if (! this._ctor) {
             this._ctor = new Pomelo();
+            this._ctor.pomelo = window.pomelo;
         }
         return this._ctor;
     }
