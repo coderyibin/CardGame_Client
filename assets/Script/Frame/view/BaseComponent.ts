@@ -3,12 +3,12 @@
  * Justin 创建于 2017/12/24
  */
 const {ccclass, property, executionOrder} = cc._decorator;
-import { Emitter } from "../ctrl/Emitter"
 import { ClientData } from "../module/ClientData"
 import { RES, RES_TYPE } from "../common/resource";
 import { LOCAL_KEY, I18N } from "../common/Common";
 import ButtonClick from "./ButtonClick";
 import BaseLabel from "./BaseLabel";
+import CustEmitter from "../ctrl/CustEmitter";
 // import { ResDefine } from "../common/ResDefine";
 
 @ccclass
@@ -30,7 +30,7 @@ export default class BaseComponent extends cc.Component {
     // })
     // ShieldNode : cc.Node = null;
 
-    _emitter : Emitter;
+    _emitter : CustEmitter;
     _client : ClientData;
     _logicComponentName : string;
     _spriteFrame : {};
@@ -44,7 +44,7 @@ export default class BaseComponent extends cc.Component {
         //隐藏帧率
         cc.director.setDisplayStats(false);
         let self = this; 
-        self._emitter = Emitter.getInstance();
+        self._emitter = CustEmitter.getInstance();
         self._client = ClientData.getInstance();
         self._initData();
         //逻辑节点脚本名称--下个版本去除

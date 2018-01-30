@@ -161,4 +161,4 @@ Emitter.prototype.listeners = function(event){
 Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
-module.exports = Emitter;
+// module.exports = Emitter;

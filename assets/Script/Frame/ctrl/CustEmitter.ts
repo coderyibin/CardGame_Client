@@ -1,77 +1,4 @@
 /**  
- * 事件  
- */  
-export class Emitter {  
-    /** 监听数组 */  
-    private listeners = {};  
-  
-    /**   
-     * 注册事件  
-     * @param name 事件名称  
-     * @param callback 回调函数  
-     * @param context 上下文  
-     */ 
-    public on(name: string, callback: Function, context: any) {  
-        let self : Emitter = this;
-        let observers: Observer[] = this.listeners[name];  
-        if (observers && name == "runScene") {
-            return;
-        }
-        if (!observers) {
-            self.listeners[name] = [];  
-        }  
-        self.listeners[name].push(new Observer(callback, context));  
-    }  
-  
-    /**  
-     * 移除事件  
-     * @param name 事件名称  
-     * @param callback 回调函数  
-     * @param context 上下文  
-     */  
-    public remove(name: string, callback: Function, context: any) { 
-        let self : Emitter = this; 
-        let observers: Observer[] = self.listeners[name];  
-        if (!observers) return;  
-        let length = observers.length;  
-        for (let i = 0; i < length; i++) {  
-            let observer = observers[i];  
-            if (observer.compar(context)) {  
-                observers.splice(i, 1);  
-                break;  
-            }  
-        }  
-        if (observers.length == 0) {  
-            delete self.listeners[name];  
-        }  
-    }  
-  
-    /**  
-     * 发送事件  
-     * @param name 事件名称  
-     */  
-    public emit(name: string, ...args: any[]) {  
-        let self : Emitter = this;
-        let observers: Observer[] = self.listeners[name];  
-        if (!observers) return;  
-        let length = observers.length;  
-        for (let i = 0; i < length; i++) {  
-            let observer = observers[i];  
-            observer.notify(name, ...args);  
-        }  
-    }  
-
-    private static _emitter : Emitter;
-    public static getInstance () : Emitter {
-        if (! this._emitter) {
-            this._emitter = new Emitter();
-            return this._emitter;
-        }
-        return this._emitter;
-    }
-}  
-
-/**  
  * 观察者  
  */  
 class Observer {  
@@ -103,3 +30,75 @@ class Observer {
         return context == this.context;  
     }  
 }  
+/**  
+ * 事件  
+ */  
+export default class CustEmitter {
+    /** 监听数组 */  
+    private listeners = {};  
+  
+    /**   
+     * 注册事件  
+     * @param name 事件名称  
+     * @param callback 回调函数  
+     * @param context 上下文  
+     */ 
+    public on(name: string, callback: Function, context: any) {  
+        let self : CustEmitter = this;
+        let observers: Observer[] = this.listeners[name];  
+        if (observers && name == "runScene") {
+            return;
+        }
+        if (!observers) {
+            self.listeners[name] = [];  
+        }  
+        self.listeners[name].push(new Observer(callback, context));  
+    }  
+  
+    /**  
+     * 移除事件  
+     * @param name 事件名称  
+     * @param callback 回调函数  
+     * @param context 上下文  
+     */  
+    public remove(name: string, callback: Function, context: any) { 
+        let self : CustEmitter = this; 
+        let observers: Observer[] = self.listeners[name];  
+        if (!observers) return;  
+        let length = observers.length;  
+        for (let i = 0; i < length; i++) {  
+            let observer = observers[i];  
+            if (observer.compar(context)) {  
+                observers.splice(i, 1);  
+                break;  
+            }  
+        }  
+        if (observers.length == 0) {  
+            delete self.listeners[name];  
+        }  
+    }  
+  
+    /**  
+     * 发送事件  
+     * @param name 事件名称  
+     */  
+    public emit(name: string, ...args: any[]) {  
+        let self : CustEmitter = this;
+        let observers: Observer[] = self.listeners[name];  
+        if (!observers) return;  
+        let length = observers.length;  
+        for (let i = 0; i < length; i++) {  
+            let observer = observers[i];  
+            observer.notify(name, ...args);  
+        }  
+    }  
+
+    private static _CustEmitter : CustEmitter;
+    public static getInstance () : CustEmitter {
+        if (! this._CustEmitter) {
+            this._CustEmitter = new CustEmitter();
+            return this._CustEmitter;
+        }
+        return this._CustEmitter;
+    }
+}

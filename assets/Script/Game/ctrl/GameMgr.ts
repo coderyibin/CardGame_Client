@@ -16,4 +16,6 @@ export default class GameMgr extends BaseCtrl {
     constructor () {
         super();
     }
+
+    
 }

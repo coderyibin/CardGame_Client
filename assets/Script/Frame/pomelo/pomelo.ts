@@ -49,7 +49,7 @@ export default class Pomelo {
 
     on (emit : string, cb : Function) : void {
         this.pomelo.on(emit, cb);
-        console.log(this.pomelo);
+        // console.log(this.pomelo);
     }
 
     private static _ctor : Pomelo;
