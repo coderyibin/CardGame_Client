@@ -16,7 +16,7 @@ export default class UserMgr extends BaseCtrl {
     reqLogin (msg : any, cb : Function) : void {
         this._initPomelo(msg, (data)=>{
             pomelo.getInstance().request(ROUTE.LOGIN, {
-                uid : msg.account,
+                account : msg.account,
                 password : msg.password
             }, (data)=>{
                 cb(data);

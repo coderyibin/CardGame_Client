@@ -18,6 +18,7 @@ import { Base64 } from "./Base64";
 
  //服务端主动推送
  export let SERVER_PUSH = {
+     UPDATE_USER_INFO : "onUpdateUserInnfo",//监听玩家信息的改变
      JOIN_MAIN : "onJoinMain"//进入游戏主场景
  }
 

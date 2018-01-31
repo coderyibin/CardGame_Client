@@ -1,5 +1,6 @@
 import { Common, ROUTE, NET_CODE, SERVER_PUSH, SCENE_NAME } from "../common/Common";
 import CustEmitter from "../ctrl/CustEmitter";
+import UserMgr from "../../Game/ctrl/UserMgr";
 
 export default class Pomelo {
 
@@ -37,6 +38,7 @@ export default class Pomelo {
     }
 
     request (route : string, msg : any, cb : Function) : void {
+        console.log(route + "<-link->", msg);
         pomelo.request(route, msg, (data)=>{
             console.log(data);
             if (cb && data.code == NET_CODE.CODE_NONE) {
@@ -44,6 +46,10 @@ export default class Pomelo {
             } else if (data.code == NET_CODE.CODE_ERROR) {
             }
         });
+    }
+
+    notify (route : string, msg : any) : void {
+        pomelo.notify(route, msg);
     }
 
     on (emit : string, cb : Function) : void {
@@ -54,11 +60,16 @@ export default class Pomelo {
         switch (key) {
             case SERVER_PUSH.JOIN_MAIN :
                 {
-                    CustEmitter.getInstance().emit("_runScene", {scene : SCENE_NAME.MAIN_SCENE});
+                    CustEmitter.getInstance().emit("runScene", {scene : SCENE_NAME.MAIN_SCENE});
+                }
+                break;
+            case SERVER_PUSH.UPDATE_USER_INFO :
+                {
+                    // UserMgr.getInstance().updateUserInfo(data);
                 }
                 break;
             default :
-                console.warn("未监听当前key"+key);
+                console.warn("未监听当前key->"+key);
                 break;
         }
     }
@@ -67,7 +78,6 @@ export default class Pomelo {
     public static getInstance () : Pomelo {
         if (! this._ctor) {
             this._ctor = new Pomelo();
-            // this._ctor.pomelo = window.pomelo;
         }
         return this._ctor;
     }

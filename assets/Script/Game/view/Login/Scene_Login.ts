@@ -32,6 +32,7 @@ export default class Scene_Login extends SceneComponent {
 	//声明ui组件end
 
 	onLoad () : void {
+        
 		//调用父类onLoad
         super.onLoad();
         this.Panel_Login.active = true;
@@ -79,7 +80,6 @@ export default class Scene_Login extends SceneComponent {
             name : name
         }
         UserMgr.getInstance().reqStartGame(data, (res)=>{
-
         });
     }
 }

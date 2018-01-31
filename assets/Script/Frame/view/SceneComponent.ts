@@ -8,7 +8,7 @@ const { ccclass,  property } = cc._decorator;
 @ccclass
 export default class SceneComponent extends BaseComponent {
 
-    private _arrEmit : Array<any>;
+    _arrEmit : Array<any>;
     onLoad () : void {
         super.onLoad();
         let self = this;
