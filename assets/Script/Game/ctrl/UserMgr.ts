@@ -24,8 +24,9 @@ export default class UserMgr extends BaseCtrl {
         });
     }
 
-    //进入游戏
+    //设置名称请求进入游戏
     reqStartGame (msg : any, cb : Function) : void {
         pomelo.getInstance().request(ROUTE.UPDATENAME, msg, cb);
     }
+
 }

@@ -8,13 +8,26 @@ const { ccclass,  property } = cc._decorator;
 @ccclass
 export default class SceneComponent extends BaseComponent {
 
+    private _arrEmit : Array<any>;
     onLoad () : void {
         super.onLoad();
         let self = this;
-        self._emitter.on("runScene", self._runScene, self);
-        self._emitter.on("Sys", (name, data)=>{
-            self.showLayer(MODULE.MSG, data);
-        }, this);
+        self._arrEmit = ["runScene"];
+        for (let i = 0; i < self._arrEmit.length; i ++) {
+            let sName = self._arrEmit[i];
+            if (self[sName]) {
+                self._emitter.on(self._arrEmit[i], self[sName], self);
+            } else {
+                console.warn("未注册事件", sName);
+            }
+        }
+        // self._emitter.on("Sys", (name, data)=>{
+        //     self.showLayer(MODULE.MSG, data);
+        // }, this);
+    }
+
+    private runScene (name, data) : void {
+        this._runScene(data.scene);
     }
     /**
      * 跳转场景
@@ -39,8 +52,15 @@ export default class SceneComponent extends BaseComponent {
      * 销毁自己
      */
     _destroy () : void {
+        let self = this;
         console.log(`销毁场景${cc.director.getScene().name}`);
         //当前场景释放资源
         RES.fReleaseRes(RES_TYPE.MODULE);
+        //移除当前场景监听器
+        for (let i = 0; i < self._arrEmit.length; i ++) {
+            let sName = self._arrEmit[i];
+            self._emitter.remove(self._arrEmit[i], self[sName], self);
+            
+        }
     }
 }

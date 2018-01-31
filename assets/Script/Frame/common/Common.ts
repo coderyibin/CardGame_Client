@@ -9,12 +9,16 @@ import { Base64 } from "./Base64";
  //是否热更新
  export let HOTUPDATE = false;
 
-
  //路由
  export enum ROUTE {
     GATE = "gate.gateHandler.queryEntry",
     LOGIN = "connector.entryHandler.login",
     UPDATENAME = "connector.entryHandler.setName",
+ }
+
+ //服务端主动推送
+ export let SERVER_PUSH = {
+     JOIN_MAIN : "onJoinMain"//进入游戏主场景
  }
 
  //模块定义
@@ -39,6 +43,7 @@ import { Base64 } from "./Base64";
  export enum SCENE_NAME {
      LOADING = "Loading",
      LOGIN_SCENE = "Scene_Login",
+     MAIN_SCENE = "Scene_Main",
      MENU_SCENE = "MenuScene",
      START_SCENE = "StartGame",
      OVER_SCENE = "GameOver"
