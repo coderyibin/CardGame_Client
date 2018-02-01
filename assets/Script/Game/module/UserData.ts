@@ -10,10 +10,20 @@ export default class UserData extends Hero {
         return this._ctor;
     }
 
-    private _oUserData : inter_Player;
+    private _oUserInfo : inter_Player;
 
-    public setUserData (data : inter_Player) : void {
-
+    constructor () {
+        super();
+        this._oUserInfo = {};
     }
 
+    public setUserInfo (data : inter_Player) : void {
+        for (let i in data) {
+            this._oUserInfo[i] = data[i];
+        }
+    }
+
+    public getUserInfo () : any {
+        return this._oUserInfo;
+    }
 }

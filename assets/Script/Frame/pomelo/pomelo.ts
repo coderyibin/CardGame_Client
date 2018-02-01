@@ -1,12 +1,13 @@
 import { Common, ROUTE, NET_CODE, SERVER_PUSH, SCENE_NAME } from "../common/Common";
 import CustEmitter from "../ctrl/CustEmitter";
-import UserMgr from "../../Game/ctrl/UserMgr";
+import { NetRoute } from "./NetRoute";
+
 
 export default class Pomelo {
 
     private _initEmitter () : void {
         this.on("onSys", (msg)=>{
-            console.log("服务端推送", msg);
+            console.log("server-push:", msg);
             this.emit(msg.key, msg.data);
         });
     }
@@ -26,8 +27,6 @@ export default class Pomelo {
                 console.log("init ok", rs);
                 pomelo.disconnect(function () {
                     pomelo.init({host : rs.host, port : rs.port}, ()=> {
-                        // var rout = ROUTE.LOGIN
-                        // self.request(rout, {uid : account, password : password}, cb);
                         cb();
                     });
                 });
@@ -38,9 +37,9 @@ export default class Pomelo {
     }
 
     request (route : string, msg : any, cb : Function) : void {
-        console.log(route + "<-link->", msg);
+        console.log(route + "<-client-link->", msg);
         pomelo.request(route, msg, (data)=>{
-            console.log(data);
+            console.log("client-cb->", data);
             if (cb && data.code == NET_CODE.CODE_NONE) {
                 cb(data);
             } else if (data.code == NET_CODE.CODE_ERROR) {
@@ -57,21 +56,7 @@ export default class Pomelo {
     }
 
     emit (key : string, data : any) :void {
-        switch (key) {
-            case SERVER_PUSH.JOIN_MAIN :
-                {
-                    CustEmitter.getInstance().emit("runScene", {scene : SCENE_NAME.MAIN_SCENE});
-                }
-                break;
-            case SERVER_PUSH.UPDATE_USER_INFO :
-                {
-                    // UserMgr.getInstance().updateUserInfo(data);
-                }
-                break;
-            default :
-                console.warn("未监听当前key->"+key);
-                break;
-        }
+       NetRoute.Route(key, data);
     }
 
     private static _ctor : Pomelo;

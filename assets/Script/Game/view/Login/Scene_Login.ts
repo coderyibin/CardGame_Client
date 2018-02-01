@@ -3,10 +3,9 @@ author: JustinLin
 日期:2018-01-26 17:29:24
 */
 import SceneComponent from "../../../Frame/view/SceneComponent";
-import { Emitter } from "../../../Frame/ctrl/Emitter";
 import { RES } from "../../../Frame/common/resource";
-import UserMgr from "../../ctrl/UserMgr";
 import { Common } from "../../../Frame/common/Common";
+import { UserMgr } from "../../ctrl/UserMgr";
 
 const { ccclass, property } = cc._decorator;
 
@@ -79,7 +78,6 @@ export default class Scene_Login extends SceneComponent {
             uid : this._uId,
             name : name
         }
-        UserMgr.getInstance().reqStartGame(data, (res)=>{
-        });
+        UserMgr.getInstance().reqStartGame(data);
     }
 }

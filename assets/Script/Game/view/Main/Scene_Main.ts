@@ -3,8 +3,9 @@ author: JustinLin
 日期:2018-01-29 14:20:03
 */
 import SceneComponent from "../../../Frame/view/SceneComponent";
-import { Emitter } from "../../../Frame/ctrl/Emitter";
 import { RES } from "../../../Frame/common/resource";
+import GameMgr from "../../ctrl/GameMgr";
+import PartnerMgr from "../../ctrl/PartnerMgr";
 
 const { ccclass, property } = cc._decorator;
 
@@ -20,6 +21,16 @@ export default class Scene_Main extends SceneComponent {
 	onLoad () : void {
 		//调用父类onLoad
 		super.onLoad();
+	}
+
+	//试炼场
+	_tap_TestField () : void {
+		GameMgr.getInstance().reqTestField();
+	}
+
+	//客栈
+	_tap_Partner () : void {
+		PartnerMgr.getInstance().reqFirstPartner();
 	}
 
 }

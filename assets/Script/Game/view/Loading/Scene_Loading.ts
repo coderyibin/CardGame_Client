@@ -6,6 +6,7 @@ import { Emitter } from "../../../Frame/ctrl/Emitter";
 import { RES } from "../../../Frame/common/resource";
 import BaseLoading from "../../../Frame/view/BaseLoading";
 import { SCENE_NAME } from "../../../Frame/common/Common";
+import GameMgr from "../../ctrl/GameMgr";
 
 const { ccclass, property } = cc._decorator;
 
@@ -26,6 +27,7 @@ export default class Scene_Loading extends BaseLoading {
 	//h5 直接加载资源
 	protected _fLoadRes () : void {
 		super._fLoadRes();
+		GameMgr.getInstance();
 	}
 
 }

@@ -7,9 +7,9 @@ import pomelo from "../pomelo/pomelo";
  */
 
  export class BaseCtrl {
-     protected _clientData : ClientData;
+    //  protected _clientData : ClientData;
      constructor () {
-        this._clientData = ClientData.getInstance();
+        // this._clientData = ClientData.getInstance();
      }
 
      _initPomelo (msg : any, cb : Function) {

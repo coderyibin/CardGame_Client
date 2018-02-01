@@ -21,9 +21,6 @@ export default class SceneComponent extends BaseComponent {
                 console.warn("未注册事件", sName);
             }
         }
-        // self._emitter.on("Sys", (name, data)=>{
-        //     self.showLayer(MODULE.MSG, data);
-        // }, this);
     }
 
     private runScene (name, data) : void {
