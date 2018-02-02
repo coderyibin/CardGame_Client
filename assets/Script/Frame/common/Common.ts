@@ -16,6 +16,7 @@ import { Base64 } from "./Base64";
     UPDATENAME = "connector.entryHandler.setName",
     TESTFIELD = "testField.testHandler.testList",//试炼场列表
     JOINTEST = "testField.testHandler.JoinTest",//进入试炼场
+    STARTFIGHT = "fight.fightHandler.startFight",//开始战斗
     GETPARTNER = "partner.partnerHandler.getPartner",//获取随从
  }
 

@@ -21,8 +21,8 @@ export default class GameMgr extends BaseCtrl {
     //请求试炼场数据
     reqTestField () : void {
         let data = UserMgr.getInstance().getUserInfo();
-        pomelo.getInstance().request(ROUTE.JOINTEST, {
-            uid : data.id,
+        pomelo.getInstance().request(ROUTE.STARTFIGHT, {
+            mapId : 1
         }, (msg)=>{
             
         });
