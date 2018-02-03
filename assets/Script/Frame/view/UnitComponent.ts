@@ -19,6 +19,7 @@ import CustEmitter from "../ctrl/CustEmitter";
      * 要显示的单元名称
      * @param prefab 要显示的单元预制资源名称
      * @param data 数据
+     * @return 单元节点
      */
     public static show (prefab : string, data ?: any) : cc.Node {
         let node = RES.fGetRes(prefab);

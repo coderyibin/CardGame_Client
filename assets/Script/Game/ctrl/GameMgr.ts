@@ -33,6 +33,14 @@ export default class GameMgr extends BaseCtrl {
             cb();
         });
     }
+
+    //获取敌我双方战斗数据
+    getMyEnemyData () : any {
+        return {
+            monsters : this._oMonster,
+            users : this._oFightPartner
+        }
+    }
 }
 
 window['Game'] = GameMgr.getInstance();
