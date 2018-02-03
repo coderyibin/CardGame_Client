@@ -15,7 +15,7 @@ export default class PartnerMgr {
         return this._pctor;
     }
 
-    //进入试炼场战斗
+    //获取一直随从
     reqFirstPartner () : void {
         Pomelo.getInstance().request(ROUTE.GETPARTNER, {
             uid : UserMgr.getInstance().getUserInfo().id,

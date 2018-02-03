@@ -29,5 +29,4 @@ export default class Scene_Loading extends BaseLoading {
 		super._fLoadRes();
 		GameMgr.getInstance();
 	}
-
 }

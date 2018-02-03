@@ -1,5 +1,6 @@
 import CustEmitter from "../../Frame/ctrl/CustEmitter";
 import { SCENE_NAME, SERVER_PUSH } from "../../Frame/common/Common";
+import PartnerData from "../module/PartnerData";
 
 
 export class NetRoute {
@@ -15,8 +16,14 @@ export class NetRoute {
                     CustEmitter.getInstance().emit(key, data);
                 }
                 break;
+            case SERVER_PUSH.UPDATE_PARTNER :
+                {
+                    // CustEmitter.getInstance().emit(key, data);
+                    PartnerData.getInstance().setPartnerData(data.data.users);
+                }
+                break;
             default :
-                console.warn("未监听当前key->"+key);
+                console.warn("未监听当前key->" + key);
                 break;
         }
     }

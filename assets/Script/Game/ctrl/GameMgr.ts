@@ -13,18 +13,26 @@ export default class GameMgr extends BaseCtrl {
         return this._gctor;
     }
 
+    private _oMonster : any;
+    private _oFightPartner : any;
+
     constructor () {
         super();
         UserMgr.getInstance();
+        this._oFightPartner = {};
     }
 
     //请求试炼场数据
-    reqTestField () : void {
+    reqTestField (cb : Function) : void {
         let data = UserMgr.getInstance().getUserInfo();
         pomelo.getInstance().request(ROUTE.STARTFIGHT, {
             mapId : 1
         }, (msg)=>{
-            
+            this._oFightPartner = msg.users;
+            this._oMonster = msg.monsters
+            cb();
         });
     }
 }
+
+window['Game'] = GameMgr.getInstance();

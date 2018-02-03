@@ -4,8 +4,9 @@ author: JustinLin
 */
 import SceneComponent from "../../../Frame/view/SceneComponent";
 import { RES } from "../../../Frame/common/resource";
-import GameMgr from "../../ctrl/GameMgr";
 import PartnerMgr from "../../ctrl/PartnerMgr";
+import GameMgr from "../../ctrl/GameMgr";
+import { SCENE_NAME } from "../../../Frame/common/Common";
 
 const { ccclass, property } = cc._decorator;
 
@@ -25,7 +26,12 @@ export default class Scene_Main extends SceneComponent {
 
 	//试炼场
 	_tap_TestField () : void {
-		GameMgr.getInstance().reqTestField();
+		GameMgr.getInstance().reqTestField(this.gotoTestField.bind(this));
+	}
+
+	//前往试炼场
+	gotoTestField () : void {
+		this._runScene(SCENE_NAME.FIGHT_SCENE);
 	}
 
 	//客栈

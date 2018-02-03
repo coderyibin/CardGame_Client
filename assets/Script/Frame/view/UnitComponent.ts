@@ -2,6 +2,7 @@ import ButtonClick from "./ButtonClick";
 import { Common } from "../common/Common";
 import BaseComponent from "./BaseComponent";
 import { RES } from "../common/resource";
+import CustEmitter from "../ctrl/CustEmitter";
 
 /**
  * 单元类型脚本组件
@@ -35,6 +36,8 @@ import { RES } from "../common/resource";
     _oData : any;
     //父节点
     _parent : cc.Node;
+    //事件名称
+    _event = [];
     
     onLoad () : void {
         // super.onLoad(); 
@@ -56,5 +59,11 @@ import { RES } from "../common/resource";
 
     initUi () : void {
 
+    }
+
+    onDestroy () : void {
+        for (let i = 0; i < this._event.length; i ++) {
+            CustEmitter.getInstance().off(this._event[i]);
+        }
     }
  }

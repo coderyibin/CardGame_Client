@@ -1,5 +1,4 @@
 import { Common, ROUTE, NET_CODE, SERVER_PUSH, SCENE_NAME } from "../common/Common";
-import CustEmitter from "../ctrl/CustEmitter";
 import { NetRoute } from "./NetRoute";
 
 

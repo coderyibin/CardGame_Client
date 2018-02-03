@@ -16,14 +16,14 @@ export default class SceneComponent extends BaseComponent {
         for (let i = 0; i < self._arrEmit.length; i ++) {
             let sName = self._arrEmit[i];
             if (self[sName]) {
-                self._emitter.on(self._arrEmit[i], self[sName], self);
+                self._emitter.on(self._arrEmit[i], self[sName].bind(this), self);
             } else {
                 console.warn("未注册事件", sName);
             }
         }
     }
 
-    private runScene (name, data) : void {
+    private runScene (data) : void {
         this._runScene(data.scene);
     }
     /**
@@ -56,7 +56,7 @@ export default class SceneComponent extends BaseComponent {
         //移除当前场景监听器
         for (let i = 0; i < self._arrEmit.length; i ++) {
             let sName = self._arrEmit[i];
-            self._emitter.remove(self._arrEmit[i], self[sName], self);
+            self._emitter.off(self._arrEmit[i]);
             
         }
     }

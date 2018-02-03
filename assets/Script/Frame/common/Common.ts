@@ -23,6 +23,7 @@ import { Base64 } from "./Base64";
  //服务端主动推送
  export let SERVER_PUSH = {
      UPDATE_USER_INFO : "onUpdateUserInnfo",//监听玩家信息的改变
+     UPDATE_PARTNER : "onUpdatePartner",//监听玩家随从的改变
      JOIN_MAIN : "onJoinMain"//进入游戏主场景
  }
 
@@ -49,6 +50,7 @@ import { Base64 } from "./Base64";
      LOADING = "Loading",
      LOGIN_SCENE = "Scene_Login",
      MAIN_SCENE = "Scene_Main",
+     FIGHT_SCENE = "Scene_Fight",
      MENU_SCENE = "MenuScene",
      START_SCENE = "StartGame",
      OVER_SCENE = "GameOver"

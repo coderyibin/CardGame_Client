@@ -6,6 +6,7 @@ import SceneComponent from "../../../Frame/view/SceneComponent";
 import { RES } from "../../../Frame/common/resource";
 import { Common } from "../../../Frame/common/Common";
 import { UserMgr } from "../../ctrl/UserMgr";
+import GlobalEmitter from "../../../Frame/ctrl/GolbalEmitter";
 
 const { ccclass, property } = cc._decorator;
 
@@ -53,7 +54,6 @@ export default class Scene_Login extends SceneComponent {
     _editBox_return_edit_Password () : void {
         this._sPassword = this._EditBoxData["edit_Password"].string;
     }
-
 
     _tap_btn_Login () : void {
         UserMgr.getInstance().reqLogin({

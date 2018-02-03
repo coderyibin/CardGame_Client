@@ -37,7 +37,7 @@ export class UserMgr extends BaseCtrl {
         pomelo.getInstance().notify(ROUTE.UPDATENAME, msg);
     }
 
-    updateUserInfo (name, data) : void {
+    updateUserInfo (data) : void {
         console.log("更新玩家信息");
         UserData.getInstance().setUserInfo(data);
     }
