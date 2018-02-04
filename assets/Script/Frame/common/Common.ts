@@ -29,6 +29,7 @@ import { Base64 } from "./Base64";
 
  //模块定义
  export enum MODULE {
+    UNIT_HERO = "Unit_Hero",
     BUY = "Tip_Buy",
     SALE = "Tip_Sale",
     SHOP_UNIT = "Unit_Product",

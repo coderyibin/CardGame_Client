@@ -57,8 +57,8 @@ export default class Scene_Login extends SceneComponent {
 
     _tap_btn_Login () : void {
         UserMgr.getInstance().reqLogin({
-            "host" : RES.Res["global"]['config.json'].clienthost,
-            "port" : RES.Res["global"]['config.json'].clientport,
+            "host" : RES.Res["global"]['config'].clienthost,
+            "port" : RES.Res["global"]['config'].clientport,
             "account" : this._EditBoxData["edit_Account"].string,
             "password" : this._EditBoxData["edit_Password"].string
         }, (data)=>{
