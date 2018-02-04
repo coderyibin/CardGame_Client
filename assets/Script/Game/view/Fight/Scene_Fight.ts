@@ -104,6 +104,7 @@ export default class Scene_Fight extends SceneComponent {
 		this.scheduleOnce(this.StartFight.bind(this), this._timeOut);
 		this.CountDownTime();
 		this._timeOut = 5;
+		this.requFight();
 	}
 
 	CountDownTime () : void {
@@ -119,9 +120,15 @@ export default class Scene_Fight extends SceneComponent {
 		this.Label_TimeOut.string = this._timeOut + "";
 		if (this._timeOut < 0) {
 			this.Label_TimeOut.node.active = false;
-			this.StartFight();
+			// this.StartFight();
+			this.requFight();
 			this.CountDownTimeCancel();
 		}
+	}
+
+	//请求战斗
+	requFight () : void {
+		GameMgr.getInstance().reqFightHurt();
 	}
 
 	//开始战斗，单位轮询
