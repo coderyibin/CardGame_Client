@@ -18,6 +18,7 @@ export default class Unit_Hero extends UnitComponent {
 	_nCurMp : number = 0;
 	_abnormal : number = 0;
 	_Atted : boolean = false;
+	_att_cb : Function;
 	//私有变量声明结束
 	//这边去声明ui组件
 	@property({
@@ -90,6 +91,29 @@ export default class Unit_Hero extends UnitComponent {
 	//显示异常状态
 	showAbnormal () : void {
 		
+	}
+
+	/**
+	 * 攻击动作
+	 * @param 攻击对象
+	 * @param 攻击位置
+	 * @param 攻击结束回调
+	 * @param 攻击到敌方回调
+	 * */
+	attAction (attTar : number, pos : cc.Vec2, e_cb : Function, hit_cb : Function) : void {
+		let action = cc.moveTo(0.4, new cc.Vec2(pos.x, pos.y));
+		let reaction = cc.moveTo(0.4, this.node.getPosition());
+		this.node.runAction(cc.sequence(action, cc.delayTime(0.1), cc.callFunc(hit_cb.bind(this, attTar, this._oData.camp)), reaction , cc.callFunc(this.AttAction_cb.bind(this))));
+		this._att_cb = e_cb;
+	}
+
+	AttAction_cb () : void {
+		let name = this._oData.name;
+		console.log(name + "攻击结束");
+		this._Atted = true;
+		if (this._att_cb && this._att_cb instanceof Function) {
+			this.scheduleOnce(this._att_cb.bind(this), 0.2);
+		}
 	}
 
 	//设置攻击状态

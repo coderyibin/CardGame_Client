@@ -15,6 +15,8 @@ export default class Scene_Fight extends SceneComponent {
 	//私有变量
 	_oMyPos : Array<any>;
 	_oEnemyPos : Array<any>;
+	_oMyAttPos : Array<any>;
+	_oEnemyAttPos : Array<any>;
 	_oMyDatas :  Array<any>;
 	_oEnemyDatas :  Array<any>;
 	_timeOut : number;//超时时间，超过这时间，自动战斗
@@ -57,14 +59,26 @@ export default class Scene_Fight extends SceneComponent {
 		super.onLoad();
 		this._oMyPos = [];
 		this._oEnemyPos = [];
-		//我方坐标与地方坐标
+		this._oMyAttPos = [];
+		this._oEnemyAttPos = [];
+		//我方坐标与敌方坐标
 		for (let i = 0; i < this.Node_MyFightPos.length; i ++) {
 			this.Node_MyFightPos[i].active = false;
 			this._oMyPos.push(this.Node_MyFightPos[i].getPosition());
+			this._oEnemyAttPos.push({
+				x : this.Node_MyFightPos[i].getPosition().x + this.Node_MyFightPos[i].width / 4,
+				y : this.Node_MyFightPos[i].getPosition().y
+			});
+			this.Node_MyFight.children[i].destroy();
 		}
 		for (let i = 0; i < this.Node_EnemyFightPos.length; i ++) {
 			this.Node_EnemyFightPos[i].active = false;
 			this._oEnemyPos.push(this.Node_EnemyFightPos[i].getPosition());
+			this._oMyAttPos.push({
+				x : this.Node_EnemyFightPos[i].getPosition().x - this.Node_EnemyFightPos[i].width / 4,
+				y : this.Node_EnemyFightPos[i].getPosition().y
+			});
+			this.Node_EnemyFight.children[i].destroy();
 		}
 	}
 
@@ -72,6 +86,7 @@ export default class Scene_Fight extends SceneComponent {
 		let Fights = GameMgr.getInstance().getMyEnemyData();
 		let myFights = Fights.users;
 		let enemyFights = Fights.monsters;
+		//阵型布局
 		for (let i in myFights) {
 			let node = Unit_Hero.show(MODULE.UNIT_HERO, myFights[i]);
 			this.Node_MyFight.addChild(node);
@@ -84,7 +99,8 @@ export default class Scene_Fight extends SceneComponent {
 			node.x = this._oEnemyPos[i].x;
 			node.y = this._oEnemyPos[i].y;
 		}
-
+		this._oMyDatas = myFights;
+		this._oEnemyDatas = enemyFights;
 		this.scheduleOnce(this.StartFight.bind(this), this._timeOut);
 		this.CountDownTime();
 		this._timeOut = 5;
@@ -110,18 +126,31 @@ export default class Scene_Fight extends SceneComponent {
 
 	//开始战斗，单位轮询
 	StartFight () : void {
+		let myData = this._oMyDatas;
+		let enemyData = this._oEnemyDatas;
 		let my = this.Node_MyFight.children;
 		for (let i = 0; i < my.length; i ++) {
-
+			if (! my[i].getComponent(my[i].name).getAttStatus()) {
+				my[i].getComponent(my[i].name).attAction(enemyData[0].id, this._oMyAttPos[0], this.ItemFightEnd.bind(this), this.AttEdAction.bind(this));
+				return;
+			}
 		}
 		let enemy = this.Node_EnemyFight.children;
 		for (let i = 0; i < enemy.length; i ++) {
-
+			if (! enemy[i].getComponent(enemy[i].name).getAttStatus()) {
+				enemy[i].getComponent(enemy[i].name).attAction(myData[0].id, this._oEnemyAttPos[0], this.ItemFightEnd.bind(this), this.AttEdAction.bind(this));
+				return;
+			}
 		}
 	}
 
-	//单体战斗结束回掉
+	//单体战斗结束回调
 	ItemFightEnd () : void {
+		this.StartFight();
+	}
 
+	//被打的单体展示动作
+	AttEdAction (id, camp) : void {
+		console.log(id, camp)
 	}
 }

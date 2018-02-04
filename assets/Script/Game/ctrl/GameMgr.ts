@@ -41,6 +41,15 @@ export default class GameMgr extends BaseCtrl {
             users : this._oFightPartner
         }
     }
+
+    /** 
+     * 请求战斗伤害 
+     * */
+    reqFightHurt () : void {
+        pomelo.getInstance().request(ROUTE.QEUFIGHT, {}, (msg)=>{
+            
+        });
+    }
 }
 
 window['Game'] = GameMgr.getInstance();

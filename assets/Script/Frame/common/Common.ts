@@ -17,6 +17,7 @@ import { Base64 } from "./Base64";
     TESTFIELD = "testField.testHandler.testList",//试炼场列表
     JOINTEST = "testField.testHandler.JoinTest",//进入试炼场
     STARTFIGHT = "fight.fightHandler.startFight",//开始战斗
+    QEUFIGHT = "fight.fightHandler.reqFight",//请求战斗伤害
     GETPARTNER = "partner.partnerHandler.getPartner",//获取随从
  }
 
@@ -29,6 +30,7 @@ import { Base64 } from "./Base64";
 
  //模块定义
  export enum MODULE {
+    LAYER_NETJUHUA = "Layer_NetJuHua",
     UNIT_HERO = "Unit_Hero",
     BUY = "Tip_Buy",
     SALE = "Tip_Sale",

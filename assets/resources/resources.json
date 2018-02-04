@@ -1,7 +1,8 @@
 {
     "Common" : [
         "config",
-        "Common/Tip/Tip_Msg"
+        "Common/Tip/Tip_Msg",
+        "Common/Layer_NetJuHua"
     ],
     "Fight" : [
         "Fight/Unit_Hero"
