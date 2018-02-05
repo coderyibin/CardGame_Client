@@ -1,5 +1,5 @@
 {
     "hotupdate" : "",
-    "clienthost" : "192.168.1.3",
+    "clienthost" : "127.0.0.1",
     "clientport" : "3016"
 }

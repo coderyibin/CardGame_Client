@@ -76,5 +76,4 @@ export default class Scene_Fight extends SceneComponent {
 			node.y = this._oEnemyPos[i].y;
 		}
 	}
-
 }

@@ -2,6 +2,7 @@ import { BaseCtrl } from "../../Frame/ctrl/BaseCtrl";
 import { ROUTE } from "../../Frame/common/Common";
 import pomelo from "../../Frame/pomelo/pomelo";
 import { UserMgr } from "./UserMgr";
+import UserData from "../module/UserData";
 
 
 export default class GameMgr extends BaseCtrl {
@@ -15,11 +16,13 @@ export default class GameMgr extends BaseCtrl {
 
     private _oMonster : any;
     private _oFightPartner : any;
+    private _oUserMgr : any;
 
     constructor () {
         super();
-        UserMgr.getInstance();
+        this._oUserMgr = UserMgr.getInstance();
         this._oFightPartner = {};
+        this._oMonster = {};
     }
 
     //请求试炼场数据

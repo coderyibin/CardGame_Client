@@ -2,7 +2,6 @@
 author: JustinLin
 日期:2018-01-28 01:00:08
 */
-import { Emitter } from "../../../Frame/ctrl/Emitter";
 import { RES } from "../../../Frame/common/resource";
 import BaseLoading from "../../../Frame/view/BaseLoading";
 import { SCENE_NAME } from "../../../Frame/common/Common";
