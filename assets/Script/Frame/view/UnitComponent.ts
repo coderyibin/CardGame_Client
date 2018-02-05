@@ -23,8 +23,10 @@ import CustEmitter from "../ctrl/CustEmitter";
      */
     public static show (prefab : string, data ?: any) : cc.Node {
         let node = RES.fGetRes(prefab);
-        UnitComponent.oData = data;
-        return node;
+        if (node) {
+            UnitComponent.oData = data;
+            return node;
+        } console.log("获取到的节点为空->", prefab);
     }
 
     //单元脚本组件名称

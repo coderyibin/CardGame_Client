@@ -1,6 +1,10 @@
 {
     "Common" : [
-        "config.json",
-        "Common/Tip/Tip_Msg.prefab"
-    ] 
+        "config",
+        "Common/Tip/Tip_Msg",
+        "Common/Layer_NetJuHua"
+    ],
+    "Fight" : [
+        "Fight/Unit_Hero"
+    ]
 }

@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "048aea66-4235-46ee-a161-1e4ad8340e72",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "hero_a_world_boss": {
+      "ver": "1.0.3",
+      "uuid": "070fe90f-3bc0-44d6-9d2f-7919a2e44d42",
+      "rawTextureUuid": "048aea66-4235-46ee-a161-1e4ad8340e72",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 2.5,
+      "offsetY": 0,
+      "trimX": 47,
+      "trimY": 0,
+      "width": 281,
+      "height": 310,
+      "rawWidth": 370,
+      "rawHeight": 310,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
