@@ -48,10 +48,10 @@ export default class GameMgr extends BaseCtrl {
     /** 
      * 请求战斗伤害 
      * */
-    reqFightHurt () : void {
+    reqFightHurt (cb : Function) : void {
         pomelo.getInstance().request(ROUTE.QEUFIGHT, {}, (msg)=>{
-            
-        });
+            cb(msg);
+        }, false);
     }
 }
 

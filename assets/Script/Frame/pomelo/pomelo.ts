@@ -17,7 +17,8 @@ export default class Pomelo {
         cc.find("Canvas").addChild(node);
     }
     removeJuHua () : void {
-        cc.find("Canvas").getChildByName(MODULE.LAYER_NETJUHUA).destroy();
+        if (cc.find("Canvas").getChildByName(MODULE.LAYER_NETJUHUA))
+            cc.find("Canvas").getChildByName(MODULE.LAYER_NETJUHUA).destroy();
     }
     
     initPomelo (host, port, account, password, cb : Function) : void {
@@ -44,9 +45,9 @@ export default class Pomelo {
         this._initEmitter();
     }
 
-    request (route : string, msg : any, cb : Function) : void {
+    request (route : string, msg : any, cb : Function, show : boolean = true) : void {
         console.log(route + "<-client-link->", msg);
-        this.addNetJuHua();
+        if (show) this.addNetJuHua();
         pomelo.request(route, msg, (data)=>{
             this.removeJuHua();
             console.log("client-cb->", data);
