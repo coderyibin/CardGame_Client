@@ -22,14 +22,14 @@ export class UserMgr extends BaseCtrl {
 
     //登陆游戏
     reqLogin (msg : any, cb : Function) : void {
-        this._initPomelo(msg, (data)=>{
-            pomelo.getInstance().request(ROUTE.LOGIN, {
-                account : msg.account,
-                password : msg.password
-            }, (data)=>{
-                cb(data);
-            });
-        });
+        // this._initPomelo(msg, (data)=>{
+        //     pomelo.getInstance().request(ROUTE.LOGIN, {
+        //         account : msg.account,
+        //         password : msg.password
+        //     }, (data)=>{
+        //         cb(data);
+        //     });
+        // });
     }
 
     //设置名称请求进入游戏

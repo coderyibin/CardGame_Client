@@ -6,6 +6,8 @@ import { RES } from "../../../Frame/common/resource";
 import BaseLoading from "../../../Frame/view/BaseLoading";
 import { SCENE_NAME } from "../../../Frame/common/Common";
 import GameMgr from "../../ctrl/GameMgr";
+import Pomelo from "../../../Frame/pomelo/pomelo";
+import LoginMgr from "../../ctrl/LoginMgr";
 
 const { ccclass, property } = cc._decorator;
 
@@ -25,7 +27,12 @@ export default class Scene_Loading extends BaseLoading {
 
 	//h5 直接加载资源
 	protected _fLoadRes () : void {
-		super._fLoadRes();
+		super._fLoadRes(this.load_cb.bind(this));
+	}
+
+	load_cb () : void {
+		//游戏各项控制器数据初始化
 		GameMgr.getInstance();
+		LoginMgr.getInstance().initNet();
 	}
 }

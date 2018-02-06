@@ -12,6 +12,7 @@ import { Base64 } from "./Base64";
  //路由
  export enum ROUTE {
     GATE = "gate.gateHandler.queryEntry",
+    GETSERVER = "connector.entryHandler.getServer",//获取服务器列表
     LOGIN = "connector.entryHandler.login",
     UPDATENAME = "connector.entryHandler.setName",
     TESTFIELD = "testField.testHandler.testList",//试炼场列表

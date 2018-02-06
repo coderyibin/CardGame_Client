@@ -3,6 +3,7 @@ import { ROUTE } from "../../Frame/common/Common";
 import pomelo from "../../Frame/pomelo/pomelo";
 import { UserMgr } from "./UserMgr";
 import UserData from "../module/UserData";
+import Pomelo from "../../Frame/pomelo/pomelo";
 
 
 export default class GameMgr extends BaseCtrl {

@@ -45,6 +45,28 @@ export default class Pomelo {
         this._initEmitter();
     }
 
+    initNet (host, port, cb) : void {
+        pomelo.init({
+            host : host,
+            port : port,
+            log : true
+        }, ()=>{
+            this.request(ROUTE.GATE, {}, (msg)=>{
+                console.log("init ok", msg);
+                pomelo.disconnect(function () {
+                    pomelo.init({
+                        host : msg.host,
+                        port : msg.port
+                    }, (msg)=>{
+                        this.request(ROUTE.GETSERVER, {}, (msg)=>{
+                           cb(msg);
+                        });
+                    });
+                }.bind(this));
+            });
+        });
+    }
+
     request (route : string, msg : any, cb : Function, show : boolean = true) : void {
         console.log(route + "<-client-link->", msg);
         if (show) this.addNetJuHua();

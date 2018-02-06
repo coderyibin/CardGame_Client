@@ -43,11 +43,12 @@ export default class BaseLoading extends SceneComponent {
         });
     }
 
-    _loadResCfgJson () : void {
+    _loadResCfgJson (cb) : void {
         RES.loadJson("resources", (res)=>{
             let r = res.Common.concat(res.Fight);
             RES.loadArrayToGlobal(r, ()=>{}, ()=>{
-                this._runScene(SCENE_NAME.LOGIN_SCENE);
+                // this._runScene(SCENE_NAME.LOGIN_SCENE);
+                if (cb) cb();
             });
         });
     }
@@ -57,8 +58,8 @@ export default class BaseLoading extends SceneComponent {
     }
 
     //h5 直接加载资源
-    protected _fLoadRes () : void {
-        this._loadResCfgJson();
+    protected _fLoadRes (cb) : void {
+        this._loadResCfgJson(cb);
     }
     //检查更新
     protected _fCheckUpdate () : void {

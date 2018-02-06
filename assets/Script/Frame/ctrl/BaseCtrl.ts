@@ -12,9 +12,9 @@ import pomelo from "../pomelo/pomelo";
         // this._clientData = ClientData.getInstance();
      }
 
-     _initPomelo (msg : any, cb : Function) {
-        pomelo.getInstance().initPomelo(msg.host, msg.port, msg.account, msg.password, cb);
-     }
+    //  _initPomelo (msg : any, cb : Function) {
+    //     pomelo.getInstance().initPomelo(msg.host, msg.port, msg.account, msg.password, cb);
+    //  }
 
     //  /**
     //   * 游戏数据的清理
