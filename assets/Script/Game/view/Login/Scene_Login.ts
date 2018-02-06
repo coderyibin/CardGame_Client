@@ -7,6 +7,7 @@ import { RES } from "../../../Frame/common/resource";
 import { Common } from "../../../Frame/common/Common";
 import { UserMgr } from "../../ctrl/UserMgr";
 import GlobalEmitter from "../../../Frame/ctrl/GolbalEmitter";
+import LoginMgr from "../../ctrl/LoginMgr";
 
 const { ccclass, property } = cc._decorator;
 
@@ -56,7 +57,7 @@ export default class Scene_Login extends SceneComponent {
     }
 
     _tap_btn_Login () : void {
-        UserMgr.getInstance().reqLogin({
+        LoginMgr.getInstance().reqLogin({
             "host" : RES.Res["global"]['config'].clienthost,
             "port" : RES.Res["global"]['config'].clientport,
             "account" : this._EditBoxData["edit_Account"].string,

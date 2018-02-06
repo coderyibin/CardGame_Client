@@ -33,6 +33,8 @@ export default class Scene_Loading extends BaseLoading {
 	load_cb () : void {
 		//游戏各项控制器数据初始化
 		GameMgr.getInstance();
-		LoginMgr.getInstance().initNet();
+		LoginMgr.getInstance().initNet(()=>{
+			this._runScene(SCENE_NAME.LOGIN_SCENE);
+		});
 	}
 }

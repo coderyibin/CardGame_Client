@@ -16,14 +16,21 @@ export default class LoginMgr extends BaseCtrl {
         return this._gctor;
     }
 
-    initNet () : void {
+    initNet (cb : Function) : void {
         //初始化网络
 		Pomelo.getInstance().initNet(cc['RES']['Res']['global']['config']['clienthost'], cc['RES']['Res']['global']['config']['clientport'], (msg)=>{
             ClientData.getInstance().setServer(msg.list);
+            cb();
         });
     }
 
+    //获取服务器列表
     getServerList () : any {
         return ClientData.getInstance().getServer();
+    }
+
+    //请求登录
+    reqLogin (msg : any, cb : Function) : void {
+        Pomelo.getInstance().request(ROUTE.LOGIN, msg, cb);
     }
 }

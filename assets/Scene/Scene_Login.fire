@@ -1196,7 +1196,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
+      "width": 0,
       "height": 40
     },
     "_rotationX": 0,
@@ -1305,7 +1305,7 @@
       }
     ],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [],
     "_prefab": null,
     "_id": "e8i/wqbaVMGbjz1brbgF+X",
