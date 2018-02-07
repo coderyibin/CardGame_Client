@@ -14,7 +14,7 @@ import { Base64 } from "./Base64";
     GATE = "gate.gateHandler.queryEntry",
     GETSERVER = "connector.entryHandler.getServer",//获取服务器列表
     LOGIN = "connector.entryHandler.login",
-    UPDATENAME = "connector.entryHandler.setName",
+    CREATEROLE = "connector.entryHandler.createRole",//创建角色
     TESTFIELD = "testField.testHandler.testList",//试炼场列表
     JOINTEST = "testField.testHandler.JoinTest",//进入试炼场
     STARTFIGHT = "fight.fightHandler.startFight",//开始战斗

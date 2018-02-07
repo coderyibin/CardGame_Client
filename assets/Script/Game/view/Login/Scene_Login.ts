@@ -75,10 +75,6 @@ export default class Scene_Login extends SceneComponent {
             this._LabelData['error'].string = "请不要输入特殊字符！";
             return;
         }
-        var data = {
-            uid : this._uId,
-            name : name
-        }
-        UserMgr.getInstance().reqStartGame(data);
+        LoginMgr.getInstance().reqCreateRole(name, this._uId);
     }
 }

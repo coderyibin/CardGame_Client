@@ -33,4 +33,12 @@ export default class LoginMgr extends BaseCtrl {
     reqLogin (msg : any, cb : Function) : void {
         Pomelo.getInstance().request(ROUTE.LOGIN, msg, cb);
     }
+
+    //请求创建角色
+    reqCreateRole (name : string, uid : number) : void {
+        Pomelo.getInstance().notify(ROUTE.CREATEROLE, {
+            name : name,
+            uid : uid
+        });
+    }
 }

@@ -6,6 +6,7 @@ import { RES } from "../common/resource";
 export default class Pomelo {
 
     private _initEmitter () : void {
+        console.log("初始化监听所有服务端推送的消息");
         this.on("onSys", (msg)=>{
             console.log("server-push:", msg);
             this.emit(msg.key, msg.data);
@@ -65,7 +66,9 @@ export default class Pomelo {
                 }.bind(this));
             });
         });
-    }
+        //初始化监听所有服务端推送的消息
+        this._initEmitter();        
+}
 
     request (route : string, msg : any, cb : Function, show : boolean = true) : void {
         console.log(route + "<-client-link->", msg);
