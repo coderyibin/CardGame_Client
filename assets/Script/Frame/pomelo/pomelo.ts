@@ -47,6 +47,7 @@ export default class Pomelo {
     }
 
     initNet (host, port, cb) : void {
+        this.addNetJuHua();
         pomelo.init({
             host : host,
             port : port,
@@ -68,7 +69,7 @@ export default class Pomelo {
         });
         //初始化监听所有服务端推送的消息
         this._initEmitter();        
-}
+    }
 
     request (route : string, msg : any, cb : Function, show : boolean = true) : void {
         console.log(route + "<-client-link->", msg);
