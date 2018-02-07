@@ -30,7 +30,8 @@ export default class GameMgr extends BaseCtrl {
     reqTestField (cb : Function) : void {
         let data = UserMgr.getInstance().getUserInfo();
         pomelo.getInstance().request(ROUTE.STARTFIGHT, {
-            mapId : 1
+            mapId : 1,
+            rid : UserData.getInstance().getUserInfo().id
         }, (msg)=>{
             this._oFightPartner = msg.users;
             this._oMonster = msg.monsters
