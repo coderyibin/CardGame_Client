@@ -1,6 +1,7 @@
 import { Common, ROUTE, NET_CODE, SERVER_PUSH, SCENE_NAME, MODULE } from "../common/Common";
 import { NetRoute } from "./NetRoute";
 import { RES } from "../common/resource";
+import CustEmitter from "../ctrl/CustEmitter";
 
 
 export default class Pomelo {
@@ -79,7 +80,8 @@ export default class Pomelo {
             console.log("client-cb->", data);
             if (cb && data.code == NET_CODE.CODE_NONE) {
                 cb(data);
-            } else if (data.code == NET_CODE.CODE_ERROR) {
+            } else {
+                CustEmitter.getInstance().emit("Msg", data);
             }
         });
     }

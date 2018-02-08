@@ -15,6 +15,6 @@ export default class BaseTip extends LayerComponent {
     }
 
     removeSelf () : void {
-        
+        super.removeSelf();
     }
 }

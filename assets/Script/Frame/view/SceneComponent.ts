@@ -12,7 +12,7 @@ export default class SceneComponent extends BaseComponent {
     onLoad () : void {
         super.onLoad();
         let self = this;
-        self._arrEmit = ["runScene"];
+        self._arrEmit = ["runScene", "Msg"];
         for (let i = 0; i < self._arrEmit.length; i ++) {
             let sName = self._arrEmit[i];
             if (self[sName]) {
@@ -21,6 +21,10 @@ export default class SceneComponent extends BaseComponent {
                 console.warn("未注册事件", sName);
             }
         }
+    }
+
+    Msg (data) : void {
+        this.showLayer(MODULE.MSG, {content : data.content});
     }
 
     private runScene (data) : void {
