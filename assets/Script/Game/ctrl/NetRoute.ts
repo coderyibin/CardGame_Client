@@ -22,6 +22,12 @@ export class NetRoute {
                     PartnerData.getInstance().setPartnerData(data.data.users);
                 }
                 break;
+            case SERVER_PUSH.UPDATE_PARTNER_INFO :
+                {
+                    // CustEmitter.getInstance().emit(key, data);
+                    PartnerData.getInstance().setPartnerData(data);
+                }
+                break;
             default :
                 console.warn("未监听当前key->" + key);
                 break;

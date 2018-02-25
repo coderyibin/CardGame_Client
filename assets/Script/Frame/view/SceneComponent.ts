@@ -9,10 +9,23 @@ const { ccclass,  property } = cc._decorator;
 export default class SceneComponent extends BaseComponent {
 
     _arrEmit : Array<any>;
+    _arrTime : Array<any>;
+    _arrTimes : Array<any>;
     onLoad () : void {
         super.onLoad();
         let self = this;
         self._arrEmit = ["runScene", "Msg"];
+        this._arrTime = [];
+        this._arrTimes = [];
+        this.initEvent();
+    }
+
+    initEvent () : void {
+    }
+    
+    //注册自定义事件
+    registerEvent () : void {
+        let self = this;
         for (let i = 0; i < self._arrEmit.length; i ++) {
             let sName = self._arrEmit[i];
             if (self[sName]) {
@@ -62,6 +75,10 @@ export default class SceneComponent extends BaseComponent {
             let sName = self._arrEmit[i];
             self._emitter.off(self._arrEmit[i]);
             
+        }
+        //移除定时器
+        for (let i in this._arrTime) {
+            clearTimeout(this._arrTime[i]);
         }
     }
 }

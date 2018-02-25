@@ -23,6 +23,7 @@ export default class Scene_Loading extends BaseLoading {
 	onLoad () : void {
 		//调用父类onLoad
 		super.onLoad();
+		this.registerEvent();
 	}
 
 	//h5 直接加载资源

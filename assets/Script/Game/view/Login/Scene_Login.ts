@@ -39,6 +39,7 @@ export default class Scene_Login extends SceneComponent {
         this.Panel_Login.active = true;
         this.Panel_SetName.active = false;
         this._LabelData["error"].string = "";
+        this.registerEvent();
     }
     
     _editBox_began_edit_Account (event) : void {

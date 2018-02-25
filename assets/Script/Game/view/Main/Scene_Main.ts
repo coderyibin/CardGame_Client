@@ -6,7 +6,7 @@ import SceneComponent from "../../../Frame/view/SceneComponent";
 import { RES } from "../../../Frame/common/resource";
 import PartnerMgr from "../../ctrl/PartnerMgr";
 import GameMgr from "../../ctrl/GameMgr";
-import { SCENE_NAME } from "../../../Frame/common/Common";
+import { SCENE_NAME, MODULE } from "../../../Frame/common/Common";
 
 const { ccclass, property } = cc._decorator;
 
@@ -22,6 +22,17 @@ export default class Scene_Main extends SceneComponent {
 	onLoad () : void {
 		//调用父类onLoad
 		super.onLoad();
+	}
+
+	initEvent () : void {
+		//this._arrEmit.push("event name");
+		this._arrEmit.push("onShowPartnerMsg");
+
+		this.registerEvent();
+	}
+
+	onShowPartnerMsg (data) : void {
+		this.showLayer(MODULE.PARTNERMSG, data);
 	}
 
 	//试炼场

@@ -6,5 +6,8 @@
     ],
     "Fight" : [
         "Fight/Unit_Hero"
+    ],
+    "Partner" : [
+        "Partner/Tip_PartnerMsg"
     ]
 }

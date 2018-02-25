@@ -45,7 +45,7 @@ export default class BaseLoading extends SceneComponent {
 
     _loadResCfgJson (cb) : void {
         RES.loadJson("resources", (res)=>{
-            let r = res.Common.concat(res.Fight);
+            let r = res.Common.concat(res.Fight).concat(res.Partner);
             RES.loadArrayToGlobal(r, ()=>{}, ()=>{
                 // this._runScene(SCENE_NAME.LOGIN_SCENE);
                 if (cb) cb();
